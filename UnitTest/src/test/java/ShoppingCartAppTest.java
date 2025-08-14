@@ -3,7 +3,15 @@ import org.example.discount.BuyXItemGetYitem;
 import org.example.discount.DiscountOnNextItemOffer;
 import org.example.discount.IOffer;
 import org.example.discount.NoOffer;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.io.TempDir;
+
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ShoppingCartAppTest {
 
@@ -85,6 +93,19 @@ public class ShoppingCartAppTest {
        assertEquals(120.0, cart.totalCartValue(),0.0);
     }
 
-    
+    @TempDir
+    File tempDirectory;
+
+    @Test
+    public void testTemporaryFolder() throws IOException {
+
+        Assertions.assertTrue(Files.isDirectory(tempDirectory.toPath()));
+
+        System.out.println("Temp directory: " + tempDirectory.getAbsolutePath());
+        Path createdFile = Files.createFile(tempDirectory.toPath().resolve("createdFile.txt"));
+        System.out.println("Created file: " + createdFile.toAbsolutePath());
+
+        Assertions.assertTrue(createdFile.toFile().exists());
+    }
 
 }
