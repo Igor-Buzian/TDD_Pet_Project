@@ -5,13 +5,6 @@ public class Product {
     private int quantity;
     private double totalPrice;
 
-    public void setProductName(String productName) {
-        this.productName = productName;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 
     public void setTotalPrice(double totalPrice) {
         this.totalPrice = totalPrice;

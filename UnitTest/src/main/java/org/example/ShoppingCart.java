@@ -26,27 +26,31 @@ public class ShoppingCart {
     }
 
     public void addProduct(Product product){
-       if(offer!=null){
-           offer.applyOffer(product);
-       }
-        productList.add(product);
+      if(product.getQuantity()>0 && product.getProductName()!=null && !product.getProductName().isEmpty())
+      {
+          if(offer!=null){
+              offer.applyOffer(product);
+          }
+          productList.add(product);
+      }
+      else
+      {
+          throw new IllegalArgumentException("Empty Product");
+      }
     }
 
-    public Product getProductByName(String name)
-    {
-        if(productList.size()>0)
-        {
-            for(Product product : productList)
-            {
-                if(product.getProductName().equals(name)){
-                    return product;
-                }
+    public Product getProductByName(String name) {
+        for (Product product : productList) {
+            if (product.getProductName().equals(name)) {
+                return product;
             }
         }
-        return null;
+        throw new IllegalArgumentException("Product not found!");
     }
+
 
     public void setOffer(IOffer offer) {
         this.offer = offer;
     }
+
 }
